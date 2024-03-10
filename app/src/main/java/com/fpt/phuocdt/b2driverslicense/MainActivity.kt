@@ -22,8 +22,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
-    private val TAG = "Home"
-    private lateinit var homeCategoryRcv: RecyclerView;
+    private val tag = "MainActivity"
+    private lateinit var homeCategoryRcv: RecyclerView
     private lateinit var progressBar: ProgressBar
     private lateinit var homeCategoryRcvAdapter: HomeCategoryRcvAdapter
 
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             } catch (e: Exception) {
-                Log.e(TAG, e.message.toString())
+                Log.e(tag, e.message.toString())
                 return@launch
             }
 

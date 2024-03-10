@@ -75,7 +75,9 @@ class CategoryActivity : AppCompatActivity() {
     }
 
     private fun setAdapter(int: List<Int>, question: List<Question>) {
-        questionSliderRcvAdapter = QuestionSliderRcvAdapter(int)
+        questionSliderRcvAdapter = QuestionSliderRcvAdapter(int) {
+            viewPager.currentItem = it - 1
+        }
         categoryQuestionRcv.adapter = questionSliderRcvAdapter
         categoryQuestionRcv.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
