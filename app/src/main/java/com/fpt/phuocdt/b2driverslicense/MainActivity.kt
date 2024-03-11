@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         }
         bindView()
         bindAction()
-
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val deferredCategories = async { CategoryServiceAPI.getCategory() }

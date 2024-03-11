@@ -2,32 +2,33 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trueAnswerLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="10dp">
 
     <ImageView
-        android:id="@+id/trueAnswerLayoutImgView"
+        android:id="@+id/iconAnswerStatusIV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="True question icon"
         android:scaleType="center"
-        android:src="@drawable/true_icon"
+        android:src="@drawable/unchecked_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/trueAnswerLayoutTv"
+        android:id="@+id/answerTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Placeholder"
-        android:textColor="@color/true_answer"
+        android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/trueAnswerLayoutImgView"
+        app:layout_constraintStart_toEndOf="@+id/iconAnswerStatusIV"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

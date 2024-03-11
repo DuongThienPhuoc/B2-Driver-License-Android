@@ -7,4 +7,5 @@
     <color name="dark_blue">#D0BCFF</color>
     <color name="true_answer">#4CAF50</color>
     <color name="false_answer">#F44336</color>
+    <color name="false_answer_background">#f7776e</color>
 </resources>
