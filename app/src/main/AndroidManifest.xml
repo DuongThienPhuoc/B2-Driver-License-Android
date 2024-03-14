@@ -19,6 +19,13 @@
             android:name=".CategoryActivity"
             android:exported="false" />
         <activity
+            android:name=".ScreenSlideActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QuizListActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
