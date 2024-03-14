@@ -22,7 +22,9 @@ import com.fpt.phuocdt.b2driverslicense.entity.Question
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -52,7 +54,9 @@ class CategoryActivity : AppCompatActivity() {
         }
         userChoiceDAO = UserDatabaseInstance.getInstance(this).userChoiceDao()
         bindView()
+
         val category: Category? = intent.getSerializableExtra("category") as? Category
+
         category?.let {
             progressCategory.isVisible = true
             lifecycleScope.launch(Dispatchers.IO) {
@@ -79,7 +83,7 @@ class CategoryActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        CoroutineScope(Dispatchers.IO).launch {
+        GlobalScope.launch(Dispatchers.IO) {
             userChoiceDAO.deleteAll()
         }
     }
