@@ -1,8 +1,11 @@
 package com.fpt.phuocdt.b2driverslicense.entity
 
-data class Question(
+import java.io.Serializable
+
+data class Question (
     val _id: String,
     val answers: List<Answer>,
     val img: String?,
-    val question: String
-)
+    val question: String,
+    val topic: Number
+) : Serializable
