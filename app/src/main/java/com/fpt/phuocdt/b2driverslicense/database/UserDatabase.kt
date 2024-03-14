@@ -8,21 +8,4 @@ import androidx.room.RoomDatabase
 @Database(entities = [UserChoice::class], version = 1, exportSchema = false)
 abstract class UserDatabase : RoomDatabase() {
     abstract fun userChoiceDao(): UserChoiceDAO
-
-    companion object {
-        @Volatile
-        private var INSTANCE: UserDatabase? = null
-        fun getInstance(context: Context): UserDatabase {
-            if (INSTANCE == null) {
-                synchronized(this) {
-                    INSTANCE = Room.databaseBuilder(
-                        context.applicationContext,
-                        UserDatabase::class.java,
-                        "user_database"
-                    ).build()
-                }
-            }
-            return INSTANCE!!
-        }
-    }
 }

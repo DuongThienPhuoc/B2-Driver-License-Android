@@ -24,14 +24,13 @@
         android:background="@color/light_blue" />
 
     <ImageView
-        android:visibility="gone"
         android:id="@+id/imgViewQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/divider"
-        android:src="@drawable/loading"
         android:scaleType="fitCenter"
-        />
+        android:src="@drawable/loading"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/llRadioGroupContainer"
@@ -39,16 +38,5 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imgViewQuestion"
         android:orientation="vertical" />
-
-    <Button
-        android:id="@+id/btnCheckAnswer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="30dp"
-        android:text="Check Answer"
-        android:visibility="gone" />
-
 
 </RelativeLayout>

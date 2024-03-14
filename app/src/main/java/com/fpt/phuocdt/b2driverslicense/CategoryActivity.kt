@@ -1,12 +1,10 @@
 package com.fpt.phuocdt.b2driverslicense
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ProgressBar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat.getCategory
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
@@ -17,9 +15,15 @@ import androidx.viewpager2.widget.ViewPager2
 import com.fpt.phuocdt.b2driverslicense.adapter.QuestionSliderRcvAdapter
 import com.fpt.phuocdt.b2driverslicense.adapter.QuestionViewPagerAdapter
 import com.fpt.phuocdt.b2driverslicense.api.CategoryServiceAPI
+import com.fpt.phuocdt.b2driverslicense.database.UserChoiceDAO
+import com.fpt.phuocdt.b2driverslicense.database.UserDatabaseInstance
 import com.fpt.phuocdt.b2driverslicense.entity.Category
 import com.fpt.phuocdt.b2driverslicense.entity.Question
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -29,6 +33,7 @@ class CategoryActivity : AppCompatActivity() {
     private lateinit var questionSliderRcvAdapter: QuestionSliderRcvAdapter
     private lateinit var progressCategory: ProgressBar
     private lateinit var viewPager: ViewPager2
+    private lateinit var userChoiceDAO: UserChoiceDAO
 
     private fun bindView() {
         categoryQuestionRcv = findViewById(R.id.categoryQuestionRcv)
@@ -45,8 +50,8 @@ class CategoryActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        userChoiceDAO = UserDatabaseInstance.getInstance(this).userChoiceDao()
         bindView()
-
         val category: Category? = intent.getSerializableExtra("category") as? Category
         category?.let {
             progressCategory.isVisible = true
@@ -69,9 +74,14 @@ class CategoryActivity : AppCompatActivity() {
                     Log.e("CategoryActivity", e.message.toString())
                 }
             }
-
         }
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        CoroutineScope(Dispatchers.IO).launch {
+            userChoiceDAO.deleteAll()
+        }
     }
 
     private fun setAdapter(int: List<Int>, question: List<Question>) {

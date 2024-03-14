@@ -17,13 +17,13 @@ import com.bumptech.glide.Glide
 import com.fpt.phuocdt.b2driverslicense.database.UserChoice
 import com.fpt.phuocdt.b2driverslicense.database.UserChoiceDAO
 import com.fpt.phuocdt.b2driverslicense.database.UserDatabase
+import com.fpt.phuocdt.b2driverslicense.database.UserDatabaseInstance
 import com.fpt.phuocdt.b2driverslicense.entity.Question
 import kotlinx.coroutines.launch
 
 class QuestionFragment(private val question: Question) : Fragment() {
     private lateinit var llRadioGroupContainer: LinearLayout
     private lateinit var tvQuestion: TextView
-    private lateinit var btnAnswer: Button
     private lateinit var questionImageView: ImageView
     private var isCorrect: Boolean? = null
     private var userChoiceId: String? = null
@@ -32,7 +32,6 @@ class QuestionFragment(private val question: Question) : Fragment() {
     private fun bindView(view: View) {
         llRadioGroupContainer = view.findViewById(R.id.llRadioGroupContainer)
         tvQuestion = view.findViewById(R.id.questionTv)
-        btnAnswer = view.findViewById(R.id.btnCheckAnswer)
         questionImageView = view.findViewById(R.id.imgViewQuestion)
     }
 
@@ -127,7 +126,7 @@ class QuestionFragment(private val question: Question) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_question, container, false)
-        val db = UserDatabase.getInstance(requireContext())
+        val db = UserDatabaseInstance.getInstance(requireContext())
         userChoiceDAO = db.userChoiceDao()
 
         bindView(view)

@@ -7,7 +7,13 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.fpt.phuocdt.b2driverslicense.R
+import com.fpt.phuocdt.b2driverslicense.api.CategoryServiceAPI
 import com.fpt.phuocdt.b2driverslicense.entity.Category
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeCategoryRcvAdapter(
     private val categories: List<Category>,

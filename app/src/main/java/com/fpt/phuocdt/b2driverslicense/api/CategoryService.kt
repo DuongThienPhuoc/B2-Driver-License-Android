@@ -16,5 +16,7 @@ interface CategoryService {
     suspend fun getQuestionsByCategoryId(@Path("id") id: String): Response<List<Question>>
 }
 
-val CategoryServiceAPI: CategoryService = Retrofit.Builder().baseUrl("http://192.168.0.101:9999")
+const val homeBaseURL = "http://192.168.0.101:9999"
+const val dynamicURL = "http://10.33.26.245:9999"
+val CategoryServiceAPI: CategoryService = Retrofit.Builder().baseUrl(homeBaseURL)
     .addConverterFactory(GsonConverterFactory.create()).build().create(CategoryService::class.java)
