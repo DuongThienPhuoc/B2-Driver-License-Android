@@ -5,7 +5,7 @@
     android:background="#FFFF"
     android:orientation="vertical">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="fill_parent">
@@ -27,7 +27,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="22sp"
-                    android:textColor="#ff0011"
+                    android:textColor="#000000"
                     android:textStyle="bold"
                     android:text="Câu 1" />
 
@@ -55,6 +55,7 @@
                 android:id="@+id/radGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:paddingLeft="5dp">
 
                 <RadioButton
@@ -62,40 +63,44 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:textSize="16sp"
-                    android:textColor="#1502c7"
-                    android:textStyle="bold"
-                    android:text="Trả lời 1" />
+                    android:layout_marginBottom="10dp"
+                    android:text="Trả lời 1"
+                    android:textColor="#000000"
+
+                    android:textSize="16sp" />
 
                 <RadioButton
                     android:id="@+id/radB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:textSize="16sp"
-                    android:textColor="#1502c7"
-                    android:textStyle="bold"
-                    android:text="Trả lời 2" />
+                    android:text="Trả lời 2"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#000000"
+
+                    android:textSize="16sp" />
 
                 <RadioButton
                     android:id="@+id/radC"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:textSize="16sp"
-                    android:textColor="#1502c7"
-                    android:textStyle="bold"
-                    android:text="Trả lời 3" />
+                    android:text="Trả lời 3"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#000000"
+
+                    android:textSize="16sp" />
 
                 <RadioButton
                     android:id="@+id/radD"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:textSize="16sp"
-                    android:textColor="#1502c7"
-                    android:textStyle="bold"
-                    android:text="Trả lời 4" />
+                    android:text="Trả lời 4"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#000000"
+
+                    android:textSize="16sp" />
             </RadioGroup>
         </LinearLayout>
     </ScrollView>
