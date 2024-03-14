@@ -27,7 +27,7 @@ public class QuizListActivity extends AppCompatActivity {
 
         TopicAdapter adapter = new TopicAdapter(topics);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
     }
 }
 

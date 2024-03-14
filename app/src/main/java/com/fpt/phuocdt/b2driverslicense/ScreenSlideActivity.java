@@ -36,7 +36,7 @@ public class ScreenSlideActivity extends AppCompatActivity {
     private TextView tvKiemTra;
     private TextView tvTimer;
     private CountDownTimer countDownTimer;
-    private long timeLeftInMillis = 100000;
+    private long timeLeftInMillis = 1320000;
     private int correctAnswerCount = 0;
     private void bindingView() {
         tvKiemTra = findViewById(R.id.tvKiemTra);
