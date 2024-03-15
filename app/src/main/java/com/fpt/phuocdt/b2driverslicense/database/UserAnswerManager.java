@@ -1,9 +1,10 @@
 package com.fpt.phuocdt.b2driverslicense.database;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserAnswerManager {
+public class UserAnswerManager implements Serializable {
     private static UserAnswerManager instance;
     private List<UserAnswer> userAnswers;
 

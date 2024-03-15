@@ -30,57 +30,43 @@ public class ExamFragment extends Fragment {
     private static int position;
     private List<Answer> answers = new ArrayList<>();
     private UserAnswerManager userAnswerManager;
+
+    private TextView tvNum;
+    private TextView tvQuestion ;
+    private ImageView ivIcon ;
+    private RadioGroup radGroup;
+    private RadioButton radA;
+    private RadioButton radB;
+    private RadioButton radC ;
+    private RadioButton radD ;
     private static final String ARG_QUESTION_POSITION = "position";
     private static final String ARG_QUESTION_OBJECT = "question";
 
-    @NonNull
-    public static ExamFragment newInstance(Question question, int position) {
-        ExamFragment fragment = new ExamFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(ARG_QUESTION_OBJECT, question);
-        args.putInt(ARG_QUESTION_POSITION, position);
-        fragment.setArguments(args);
-        return fragment;
-    }
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            question = (Question) getArguments().getSerializable(ARG_QUESTION_OBJECT);
-            position = getArguments().getInt(ARG_QUESTION_POSITION);
-            answers = question.getAnswers();
-            userAnswerManager = UserAnswerManager.getInstance();
-        }
-    }
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_slider, container, false);
-        initializeViews(rootView);
-        return rootView;
+    private void bindingView(View rootView){
+        tvNum = rootView.findViewById(R.id.tvNum);
+        tvQuestion = rootView.findViewById(R.id.tvQuestion);
+        ivIcon = rootView.findViewById(R.id.ivIcon);
+        radGroup = rootView.findViewById(R.id.radGroup);
+        radA = rootView.findViewById(R.id.radA);
+        radB = rootView.findViewById(R.id.radB);
+        radC = rootView.findViewById(R.id.radC);
+        radD= rootView.findViewById(R.id.radD);
+
+        initializeViews();
     }
 
-    private void initializeViews(View rootView) {
-        TextView tvNum = rootView.findViewById(R.id.tvNum);
-        TextView tvQuestion = rootView.findViewById(R.id.tvQuestion);
-        ImageView ivIcon = rootView.findViewById(R.id.ivIcon);
-        RadioGroup radGroup = rootView.findViewById(R.id.radGroup);
-        RadioButton radA = rootView.findViewById(R.id.radA);
-        RadioButton radB = rootView.findViewById(R.id.radB);
-        RadioButton radC = rootView.findViewById(R.id.radC);
-        RadioButton radD = rootView.findViewById(R.id.radD);
+
+    private void initializeViews() {
         tvNum.setText("Câu " + (position + 1));
         tvQuestion.setText(question.getQuestion());
         String imageUrl = question.getImg();
         if (imageUrl != null && !imageUrl.isEmpty()) {
-
             ivIcon.setVisibility(View.VISIBLE);
-            Glide.with(this)
+            Glide.with(requireContext())
                     .load(imageUrl)
                     .placeholder(R.drawable.loading)
                     .into(ivIcon);
         } else {
-
             ivIcon.setVisibility(View.GONE);
         }
 
@@ -113,11 +99,10 @@ public class ExamFragment extends Fragment {
                 radD.setVisibility(View.GONE);
             }
         }
-        List<UserAnswer> userAnswers = new ArrayList<>();
         radGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton checkedRadioButton = rootView.findViewById(checkedId);
+                RadioButton checkedRadioButton = group.findViewById(checkedId);
                 if (checkedRadioButton != null) {
                     int position = radGroup.indexOfChild(checkedRadioButton);
                     if (position >= 0 && position < answers.size()) {
@@ -136,7 +121,35 @@ public class ExamFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @NonNull
+    public static ExamFragment newInstance(Question question, int position) {
+        ExamFragment fragment = new ExamFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_QUESTION_OBJECT, question);
+        args.putInt(ARG_QUESTION_POSITION, position);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            question = (Question) getArguments().getSerializable(ARG_QUESTION_OBJECT);
+            position = getArguments().getInt(ARG_QUESTION_POSITION);
+            answers = question.getAnswers();
+            userAnswerManager = UserAnswerManager.getInstance();
+        }
 
     }
-}
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_slider, container, false);
+        bindingView(rootView);
+        return rootView;
+    }
+}
