@@ -17,6 +17,6 @@ interface CategoryService {
 }
 
 const val homeBaseURL = "http://192.168.16.100:9999"
-const val dynamicURL = "http://10.33.26.245:9999"
-val CategoryServiceAPI: CategoryService = Retrofit.Builder().baseUrl(homeBaseURL)
+const val dynamicURL = "http://10.33.27.164:9999"
+val CategoryServiceAPI: CategoryService = Retrofit.Builder().baseUrl(dynamicURL)
     .addConverterFactory(GsonConverterFactory.create()).build().create(CategoryService::class.java)
